@@ -2,15 +2,19 @@
 
 This project accompanies my journey through the excelent book [Clojure for the Brave and True](https://www.goodreads.com/book/show/20873338-clojure-for-the-brave-and-true)
 
-It's also my first attempt at [literate programming](https://en.wikipedia.org/wiki/Literate_programming) by using [Marginalia](https://github.com/gdeer81/marginalia) to generate a side-by-side code story based on the examples in the book and manually extracted bits of information.
+It's also my first attempt at [literate programming](https://en.wikipedia.org/wiki/Literate_programming) by using [Marginalia](https://github.com/rarescosma/clojure.marginalia) to generate a side-by-side code story based on the examples in the book and manually extracted bits of information.
 
 ## Dev Dependencies
 
 #### Marginalia
 
-You should have the marginalia uberjar built and residing in `/src/marginalia/target/marginalia-0.9.0-standalone.jar`.
+After building marginalia, link the standalone `.jar` file into `bin/marg.jar`:
 
-I'm building mine from a personal fork, aimed to fix namespace sorting and tweak the output HTML for live editing.
+```
+ln -sf /src/lang.clojure/marginalia/target/marginalia-0.9.0-standalone.jar bin/marg.jar
+```
+
+I'm building mine from a [personal fork](https://github.com/rarescosma/clojure.marginalia), aimed to fix namespace sorting and tweak the output HTML for live editing.
 
 #### Livereload
 
