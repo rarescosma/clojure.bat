@@ -1,0 +1,8 @@
+{
+  "name": "bat",
+  "version": "1.0.1",
+  "private": true,
+  "devDependencies": {
+    "livereload": "^0.6.0"
+  }
+}
