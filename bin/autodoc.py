@@ -25,7 +25,7 @@ def startWebServer():
         ('127.0.0.1', 8000), SimpleHTTPRequestHandler)
 
     sa = httpd.socket.getsockname()
-    print "Serving HTTP on", sa[0], "port", sa[1], "..."
+    print "> Serving HTTP on", sa[0], "port", sa[1], "..."
     t = Thread(target=httpd.serve_forever)
     t.daemon = True
     t.start()
@@ -37,26 +37,24 @@ def threadLivereload():
     subprocess.call([lrBin, watchDoc, "-w", "100"])
 
 def threadWatcher():
-    time.sleep(0)
     wm = pyinotify.WatchManager()
-    mask = pyinotify.IN_CREATE | pyinotify.IN_MODIFY
-    notifier = pyinotify.Notifier(wm, PTmp())
+    mask = pyinotify.IN_MODIFY
+    notifier = pyinotify.Notifier(wm, Processor())
     watchPath = os.path.normpath(os.path.join(DOT, "../src/bat"))
-    print "Watching '%s' for changes ..." % watchPath
+    print "> Watching '%s' for changes ..." % watchPath
     wdd = wm.add_watch(watchPath, mask, rec=True)
 
     while True:
         notifier.process_events()
         if notifier.check_events():
             notifier.read_events()
+        else:
+            time.sleep(0)
 
-class PTmp(pyinotify.ProcessEvent):
+class Processor(pyinotify.ProcessEvent):
     "Processes file events"
     def process_IN_MODIFY(self, event):
-        "MODIFY event handler"
-        filename = os.path.join(event.path, event.name)
-        print "Modified: %s " % filename
-        print DOT
+        print "%s: %s" % ("> Modified", os.path.join(event.path, event.name))
         subprocess.call([ DOT + "/marg.sh"])
 
 if [__name__ == "__main__"]:
