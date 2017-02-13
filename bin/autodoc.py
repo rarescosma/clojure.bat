@@ -31,11 +31,13 @@ def startWebServer():
     t.start()
 
 def threadLivereload():
+    time.sleep(0)
     lrBin = DOT + "/../node_modules/.bin/livereload"
     watchDoc = DOT + "/../docs/"
     subprocess.call([lrBin, watchDoc, "-w", "100"])
 
 def threadWatcher():
+    time.sleep(0)
     wm = pyinotify.WatchManager()
     mask = pyinotify.IN_CREATE | pyinotify.IN_MODIFY
     notifier = pyinotify.Notifier(wm, PTmp())
@@ -60,9 +62,9 @@ class PTmp(pyinotify.ProcessEvent):
 if [__name__ == "__main__"]:
     os.setpgrp() # create new process group, become its leader
     try:
-        startWebServer()
         bootThread(threadLivereload)
         bootThread(threadWatcher)
+        startWebServer()
         while True:
             time.sleep(1)
     finally:
