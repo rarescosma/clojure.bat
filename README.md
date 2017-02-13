@@ -23,4 +23,4 @@ I'm building mine from a personal fork, aimed to fix namespace sorting and tweak
 - A Livereload server running on the default `35729` port, watching for changes to the `docs/uberdoc.html` file
 - A `SimpleHTTPServer` running on port `8000` serving `docs`
 
-From this point on, simply open http://localhost:8000/uberdoc.html in your browser where changes in the source files should be automagically reflected. 
+From this point on, simply open [http://localhost:8000/uberdoc.html](http://localhost:8000/uberdoc.html) in your browser where changes in the source files should be automagically reflected. 
