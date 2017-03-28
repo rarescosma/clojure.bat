@@ -32,9 +32,9 @@
     "Super fail"))
 
 ;; The `when` operator is like a combination of `if` and `do`, but with no else branch:
-(when true
-  (println "Success!")
-  "abra cadabra")
+(when true
+  (great_success!)
+  :success_status)
 
 ;; __NOTE:__ Use `when` if you want to do multiple things when some condition is true, and you always want to return `nil` when the condition is false.
 
@@ -42,20 +42,20 @@
 
 ;;`true` and `false` are values. `nil` indicates no value.
 
-;; To check whether a value is `nil`:
-(nil? 1)
+;; Use `nil?` to check whether a value is `nil`.
+(nil? 1) ; => false
 
 ;; `nil` and `false` represent logical falsiness, __ALL__ other values are logically truthy.
 
 ;; #### <code>or</code> and <code>and</code>
 
 ;; `or` returns either the first truthy value or the last value:
-(or "i am returned" false nil)
-(or false false :iamreturned)
+(or "i am returned" false nil) ; => "i am returned"
+(or false nil :iamreturned) ; => :iamreturned
 
 ;; `and` returns the first falsey value or, if no values are falsey, the last truthy value.
-(and "when" "everything" "is" "true" :iamreturned)
-(and nil false "nil is returned")
+(and "when" "everything" "is" "true" :iamreturned) ; => :iamreturned
+(and nil false "nil is returned") ; => nil
 
 ;; #### Naming values - <code>def</code>
 ;;
@@ -67,9 +67,9 @@
 (defn error-message
   "Conditional string concatenation using immutable constructs"
   [severity]
-  (str "OH GOD! IT'S A DISASTER! WE'RE "
+  (str "IT'S A DISASTER! WE'RE "
     (if (= severity :mild)
       "MILDLY INCONVENIENCED!"
       "DOOOOOOOMED!")))
 
-(error-message :mild)
+(error-message :mild) ; => "IT'S A DISASTER! WE'RE MILDLY INCONVENIENCED!"

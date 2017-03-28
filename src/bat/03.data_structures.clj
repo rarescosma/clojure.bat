@@ -19,21 +19,21 @@
 {:fname "John" :lname "Doe"}
 (hash-map :a 1 :b 2)
 
-;; Hashmaps constructed with a call to `hash-map` are identical, even if ordered differently:
-(= (hash-map :a 1 :b 2) {:b 2 :a 1})
+;; Hashmaps constructed with a call to `hash-map` are identical, even if ordered differently.
+(= (hash-map :a 1 :b 2) {:b 2 :a 1}) ; => true
 
 ;; #### Lookup
 (def mymap {:a 1 :b 2})
 
-;; If the key exists the value is returned:
-(:a mymap)
+;; If the key exists the value is returned.
+(:a mymap) ; => 1
 
-;; If the key doesn't exist and no default value is supplied `nil` is returned:
-(get mymap :c)
+;; If the key doesn't exist and no default value is supplied `nil` is returned.
+(get mymap :c) ; => nil
 
-;; Using default values:
-(get mymap :c "default_value")
-(:c mymap "default_value")
+;; Default values can be supplied as a last argument to extraction operands.
+(get mymap :c "default value")
+(:c mymap "default value") ; => "default value"
 
 ;; # Vectors
 ;; Vectors are 0-indexed collection.
@@ -42,8 +42,12 @@
 [3 2 1]
 (vector "creepy" "full" "moon")
 
+;; Vectors are sequences, so order is important
+[(= (vector 1 2 3) [1 2 3]) (= [2 1 3] (vector 1 2 3))] ; => [true false]
+
+
 ;; #### Lookup
-;; By passing the index to a `get` call
+;; By passing the index to a `get` call.
 ;;
 ;; Non-existent indexes result in `nil`
 (get [3 2 1] 0)
@@ -58,16 +62,16 @@
 ;; Lists are Similar to vectors, but you cannot retrieve list elements with `get`.
 ;;
 ;; #### Construct
-;; With a _SINGLE_ quote or by calling `list`:
+;; With a _SINGLE_ quote or by calling `list`.
 '(1 2 3 4)
 (list 1 "two" {3 4})
 
 ;; #### Lookup
-;; By calling `nth` with an index:
+;; By calling `nth` with an index.
 (nth '(:a :b :c) 0)
 
 ;; #### Prepend
-;; By calling `conj`:
+;; By calling `conj`.
 (conj '(1 2 3) 4)
 
 ;; __NOTE:__ Using `nth` to retrieve an element from a list is slower than using `get` to retrieve an element from a vector.
@@ -83,7 +87,7 @@
 (hash-set 1 1 2 2)
 (set [1 1 1 2 3 4])
 
-;; Set elements are automatically deduplicated, so they are all unique:
+;; Set elements are automatically deduplicated, so they are all unique.
 (conj #{:a :b} :b) ; => #{:a :b}
 
 ;; #### Membership

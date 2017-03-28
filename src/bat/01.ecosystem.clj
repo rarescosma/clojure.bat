@@ -3,10 +3,11 @@
 ;; * forged in a mythic volcano by Rich Hickey
 ;; * Lisp + functional programming + lock of his own epic hair
 ;;
-;; Clojure language = a Lisp dialect with a functional emphasis whose syntax and semantics are independent of _any_ implementation.
-;; Clojure compiler = executable JAR file, `clojure.jar`, which takes code written in the Clojure language and compiles it to JVM bytecode
+;; Clojure _language_ = a Lisp dialect with a functional emphasis whose syntax and semantics are independent of _any_ implementation.
 ;;
-;; # Leiningen
+;; Clojure _compiler_ = executable JAR file, `clojure.jar`, which takes code written in the Clojure language and compiles it to JVM bytecode.
+;;
+;; # Managing Lifecycle with Leiningen
 ;;
 ;; #### Creating a project
 ;; `lein new app bat`
@@ -15,7 +16,9 @@
 ;;
 ;; #### Building the project
 ;;
-;; `lein uberjar`
+;; `lein uberjar` is the equivalent of `sbt ~assembly` from Scala
+;;
+;; #### Running in the JVM
 ;;
 ;; `java -jar target/uberjar/bat-0.1.0-SNAPSHOT-standalone.jar`
 ;;
